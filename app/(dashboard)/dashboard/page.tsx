@@ -1,6 +1,6 @@
 import { Award, BookOpen, CalendarDays, MessageSquare, Settings, Trophy } from "lucide-react";
 
-const nav = ["Dashboard", "I miei corsi", "Certificazioni", "Calendario", "Messaggi", "Risorse", "Impostazioni"];
+const nav = ["Pannello", "I miei corsi", "Certificazioni", "Calendario", "Messaggi", "Risorse", "Impostazioni"];
 const metrics = [["Corsi attivi", "3"], ["Ore di studio", "47h"], ["Certificazioni ottenute", "2"], ["Posizione nel gruppo", "#124 su 1.840"]];
 
 export default function DashboardPage() {

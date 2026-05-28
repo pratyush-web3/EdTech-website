@@ -13,6 +13,7 @@ export function Footer() {
         <div>
           <h3 className="font-semibold text-aurea-highlight">Naviga</h3>
           <div className="mt-4 grid gap-3 text-sm text-aurea-muted">
+            <Link href="/about">About Us</Link>
             <Link href="/chi-siamo">Chi siamo</Link>
             <Link href="/corsi">Corsi</Link>
             <Link href="/formazione">Formazione</Link>

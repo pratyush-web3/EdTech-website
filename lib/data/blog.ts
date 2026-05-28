@@ -17,9 +17,13 @@ export const blogPosts: BlogPost[] = [
     title: "Come prepararsi al test di ammissione Bocconi: la guida che avrei voluto leggere a 17 anni.",
     category: "Universita",
     date: "4 febbraio 2025",
-    image: img("photo-1523050854058-8df90110c9f1"),
+    image: "https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg",
     excerpt: "Il test Bocconi non e difficile. E selettivo. C'e una differenza enorme, e capirla prima ti evita settimane buttate.",
-    body: ["Il test Bocconi non e difficile. E selettivo. C'e una differenza enorme.", "Prepararsi bene significa simulare pressione, tempi e ordine delle domande. Non basta studiare piu ore.", "La settimana prima non aggiungi argomenti. Togli rumore."]
+    body: [
+      "Il test Bocconi non e difficile. E selettivo. C'e una differenza enorme.",
+      "Prepararsi bene significa simulare pressione, tempi e ordine delle domande. Non basta studiare piu ore.",
+      "La settimana prima non aggiungi argomenti. Togli rumore."
+    ]
   },
   {
     slug: "competenze-digitali-2025",

@@ -107,19 +107,19 @@ export const courses: Course[] = [
     outcomes: ["Scrivi app in React e Next.js", "Colleghi API e database", "Pubblici un progetto da mostrare"],
     modules: ["HTML e CSS", "React", "Backend", "Deploy"]
   },
-  {
-    slug: "digital-marketing-strategy-2025",
-    title: "Digital Marketing Strategy 2025",
-    category: "Marketing",
-    level: "Intermedio",
-    hours: "110h",
-    price: "€399",
-    teacher: "Dr. Luca Gallo",
-    image: img("photo-1523050854058-8df90110c9f1"),
-    summary: "Hai budget, canali, obiettivi e poco tempo. Il corso ti fa scegliere cosa tagliare prima ancora di cosa pubblicare.",
-    outcomes: ["Costruisci funnel misurabili", "Leggi dati senza vanity metric", "Prepari un piano trimestre per trimestre"],
-    modules: ["Strategia", "Paid media", "SEO", "Misurazione"]
-  },
+  // {
+  //   slug: "digital-marketing-strategy-2025",
+  //   title: "Digital Marketing Strategy 2025",
+  //   category: "Marketing",
+  //   level: "Intermedio",
+  //   hours: "110h",
+  //   price: "€399",
+  //   teacher: "Dr. Luca Gallo",
+  //   image: img("photo-1523050854058-8df90110c9f1"),
+  //   summary: "Hai budget, canali, obiettivi e poco tempo. Il corso ti fa scegliere cosa tagliare prima ancora di cosa pubblicare.",
+  //   outcomes: ["Costruisci funnel misurabili", "Leggi dati senza vanity metric", "Prepari un piano trimestre per trimestre"],
+  //   modules: ["Strategia", "Paid media", "SEO", "Misurazione"]
+  // },
   {
     slug: "content-marketing-seo",
     title: "Content Marketing e SEO",

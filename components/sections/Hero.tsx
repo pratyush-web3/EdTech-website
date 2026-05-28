@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { getGsap } from "@/lib/gsap";
 
@@ -64,19 +65,26 @@ export function Hero() {
 
           {/* CTA */}
           <div data-hero-reveal className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <a
+            <Link
               href="/corsi"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-aurea-primary px-6 py-3 text-sm font-bold text-aurea-bg transition hover:bg-aurea-highlight"
             >
               Esplora i corsi <ArrowRight size={17} />
-            </a>
+            </Link>
 
-            <a
+            <Link
+              href="/about"
+              className="inline-flex min-h-12 items-center justify-center rounded-full border border-aurea-border bg-aurea-bg/55 px-6 py-3 text-sm font-semibold text-aurea-highlight backdrop-blur transition hover:border-aurea-primary hover:bg-aurea-card/80"
+            >
+              Chi siamo
+            </Link>
+
+            <Link
               href="/contatti"
               className="inline-flex min-h-12 items-center justify-center rounded-full border border-aurea-border bg-aurea-bg/55 px-6 py-3 text-sm font-semibold text-aurea-highlight backdrop-blur transition hover:border-aurea-primary"
             >
               Parla con un tutor
-            </a>
+            </Link>
           </div>
 
           {/* PROOF */}

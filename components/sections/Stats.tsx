@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { getGsap } from "@/lib/gsap";
 
 const stats = [
@@ -13,26 +13,33 @@ const stats = [
 export function Stats() {
   const ref = useRef<HTMLElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const { gsap } = getGsap();
     const nodes = ref.current?.querySelectorAll("[data-count]");
-    nodes?.forEach((node) => {
-      const target = Number((node as HTMLElement).dataset.count);
-      const value = { n: 0 };
-      gsap.to(value, {
-        n: target,
-        duration: 1.8,
-        ease: "power2.out",
-        scrollTrigger: { trigger: node, start: "top 85%" },
-        onUpdate: () => {
-          const el = node as HTMLElement;
-          if (target === 14200) el.textContent = `${Math.round(value.n).toLocaleString("it-IT")}+`;
-          if (target === 98) el.textContent = `${Math.round(value.n)} su 100`;
-          if (target === 340) el.textContent = `${Math.round(value.n)}+`;
-          if (target === 89) el.textContent = `${Math.round(value.n)}%`;
-        }
+    const nodeList = nodes ? Array.from(nodes) : [];
+    const ctx = gsap.context(() => {
+      nodeList.forEach((node) => {
+        const target = Number((node as HTMLElement).dataset.count);
+        const value = { n: 0 };
+        gsap.to(value, {
+          n: target,
+          duration: 1.8,
+          ease: "power2.out",
+          scrollTrigger: { trigger: node, start: "top 85%" },
+          onUpdate: () => {
+            const el = node as HTMLElement;
+            if (target === 14200) el.textContent = `${Math.round(value.n).toLocaleString("it-IT")}+`;
+            if (target === 98) el.textContent = `${Math.round(value.n)} su 100`;
+            if (target === 340) el.textContent = `${Math.round(value.n)}+`;
+            if (target === 89) el.textContent = `${Math.round(value.n)}%`;
+          }
+        });
       });
-    });
+    }, ref);
+
+    return () => {
+      ctx.revert();
+    };
   }, []);
 
   return (

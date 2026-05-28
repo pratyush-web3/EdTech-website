@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import Link from "next/link";
 import { featuredCourses } from "@/lib/data/courses";
 import { getGsap } from "@/lib/gsap";
@@ -9,17 +9,23 @@ export function CoursesSection() {
   const wrap = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const container = wrap.current;
     const target = track.current;
     if (!container || !target) return;
     const { gsap } = getGsap();
     const distance = target.scrollWidth - container.offsetWidth;
-    gsap.to(target, {
-      x: -Math.max(distance, 0),
-      ease: "none",
-      scrollTrigger: { trigger: container, start: "top top", end: `+=${Math.max(distance, 600)}`, scrub: 1, pin: true }
-    });
+    const ctx = gsap.context(() => {
+      gsap.to(target, {
+        x: -Math.max(distance, 0),
+        ease: "none",
+        scrollTrigger: { trigger: container, start: "top top", end: `+=${Math.max(distance, 600)}`, scrub: 1, pin: true }
+      });
+    }, container);
+
+    return () => {
+      ctx.revert();
+    };
   }, []);
 
   return (

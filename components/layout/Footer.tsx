@@ -16,7 +16,9 @@ export function Footer() {
             <Link href="/chi-siamo">Chi siamo</Link>
             <Link href="/corsi">Corsi</Link>
             <Link href="/formazione">Formazione</Link>
-            <Link href="/faq">FAQ</Link>          </div>
+            <Link href="/faq">
+              Domande frequenti</Link>
+          </div>
         </div>
         <div>
           <h3 className="font-semibold text-aurea-highlight">Contatti</h3>
@@ -29,7 +31,7 @@ export function Footer() {
         <div>
           <h3 className="font-semibold text-aurea-highlight">Legale</h3>
           <div className="mt-4 grid gap-3 text-sm text-aurea-muted">
-            <Link href="/privacy">Politica sulla riservatezza</Link>
+            <Link href="/privacy">Privacy</Link>
             <Link href="/termini">Termini di utilizzo</Link>
             <span>P.IVA {contactInfo.vat}</span>
           </div>

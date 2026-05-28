@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { getGsap } from "@/lib/gsap";
 
 const steps = [
@@ -13,15 +13,21 @@ const steps = [
 export function Method() {
   const ref = useRef<HTMLElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const node = ref.current;
     if (!node) return;
     const { gsap } = getGsap();
-    gsap.fromTo(
-      node.querySelectorAll("[data-step]"),
-      { opacity: 0.15, y: 40 },
-      { opacity: 1, y: 0, stagger: 0.35, scrollTrigger: { trigger: node, start: "top top", end: "+=900", scrub: true, pin: true } }
-    );
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        node.querySelectorAll("[data-step]"),
+        { opacity: 0.15, y: 40 },
+        { opacity: 1, y: 0, stagger: 0.35, scrollTrigger: { trigger: node, start: "top top", end: "+=900", scrub: true, pin: true } }
+      );
+    }, node);
+
+    return () => {
+      ctx.revert();
+    };
   }, []);
 
   return (

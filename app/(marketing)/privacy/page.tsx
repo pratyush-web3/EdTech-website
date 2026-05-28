@@ -13,7 +13,7 @@ export default function PrivacyPage() {
     <section className="section-aurea legal page-shell">
       <div className="container-aurea max-w-5xl">
         <p className="text-sm uppercase tracking-[0.18em] text-aurea-primary">Ultimo aggiornamento: 15 gennaio 2025</p>
-        <h1 className="mt-5 font-heading text-5xl text-aurea-highlight md:text-7xl">Privacy Policy</h1>
+        <h1 className="mt-5 font-heading text-5xl text-aurea-highlight md:text-7xl">politica sulla riservatezza</h1>
         <p className="mt-6 max-w-3xl text-lg leading-8 text-aurea-muted">
           La presente informativa descrive le modalita con cui {contactInfo.legalName} tratta i dati personali degli utenti della piattaforma, ai sensi del Regolamento (UE) 2016/679.
         </p>

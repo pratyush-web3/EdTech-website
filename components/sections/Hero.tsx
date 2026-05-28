@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { getGsap } from "@/lib/gsap";
@@ -10,32 +10,32 @@ const proof = ["EQF Level 5", "14.200 studenti", "340 corsi", "Tutor umano"];
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const section = ref.current;
     if (!section) return;
 
     const { gsap } = getGsap();
-
     const titleLines = section.querySelectorAll("[data-line]");
     const revealItems = section.querySelectorAll("[data-hero-reveal]");
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ delay: 0.3 });
 
-    const tl = gsap.timeline({ delay: 0.3 });
+      tl.fromTo(
+        titleLines,
+        { y: 70, opacity: 0, scale: 1.06, filter: "blur(12px)" },
+        { y: 0, opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.1, ease: "power4.out", stagger: 0.12 }
+      );
 
-    tl.fromTo(
-      titleLines,
-      { y: 70, opacity: 0, scale: 1.06, filter: "blur(12px)" },
-      { y: 0, opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.1, ease: "power4.out", stagger: 0.12 }
-    );
-
-    tl.fromTo(
-      revealItems,
-      { y: 22, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, stagger: 0.12, ease: "power3.out" },
-      "-=0.5"
-    );
+      tl.fromTo(
+        revealItems,
+        { y: 22, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.12, ease: "power3.out" },
+        "-=0.5"
+      );
+    }, section);
 
     return () => {
-      tl.kill();
+      ctx.revert();
     };
   }, []);
   return (

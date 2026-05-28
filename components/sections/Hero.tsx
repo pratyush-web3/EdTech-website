@@ -20,46 +20,23 @@ export function Hero() {
 
     const tl = gsap.timeline({ delay: 0.3 });
 
-    // ✨ HERO TITLE (cinematic edtech reveal)
     tl.fromTo(
       titleLines,
-      {
-        y: 70,
-        opacity: 0,
-        scale: 1.06,
-        filter: "blur(12px)",
-      },
-      {
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        filter: "blur(0px)",
-        duration: 1.1,
-        ease: "power4.out",
-        stagger: 0.12,
-      }
+      { y: 70, opacity: 0, scale: 1.06, filter: "blur(12px)" },
+      { y: 0, opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.1, ease: "power4.out", stagger: 0.12 }
     );
 
-    // ✨ CTA + PROOF ANIMATION
     tl.fromTo(
       revealItems,
-      {
-        y: 22,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: "power3.out",
-      },
+      { y: 22, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, stagger: 0.12, ease: "power3.out" },
       "-=0.5"
     );
 
-    return () => tl.kill();
+    return () => {
+      tl.kill();
+    };
   }, []);
-
   return (
     <section ref={ref} className="hero-screen relative overflow-hidden bg-aurea-bg">
       {/* Background */}

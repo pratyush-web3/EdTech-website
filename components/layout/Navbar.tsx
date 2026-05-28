@@ -1,11 +1,10 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { getGsap } from "@/lib/gsap";
 
 const links = [
-  ["Home", "/"],
+  ["Casa", "/"],
   ["Corsi", "/corsi"],
   ["Chi siamo", "/chi-siamo"],
   ["Formazione", "/formazione"],
@@ -16,55 +15,13 @@ const links = [
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const menuLinksRef = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!isOpen || !menuRef.current) return;
-
-    const { gsap } = getGsap();
-    
-    // Show the overlay immediately
-    gsap.set(menuRef.current, { display: "flex" });
-
-    // Animate the overlay background
-    gsap.fromTo(
-      menuRef.current,
-      { opacity: 0 },
-      { opacity: 1, duration: 0.4, ease: "power2.out" }
-    );
-
-    // Animate menu items
-    if (menuLinksRef.current) {
-      const items = menuLinksRef.current.querySelectorAll("[data-menu-item]");
-      gsap.fromTo(
-        items,
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: "power3.out", delay: 0.15 }
-      );
-    }
-
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = isOpen ? "hidden" : "unset";
 
     return () => {
       document.body.style.overflow = "unset";
     };
-  }, [isOpen]);
-
-  // Close animation
-  useEffect(() => {
-    if (isOpen || !menuRef.current) return;
-
-    const { gsap } = getGsap();
-    gsap.to(menuRef.current, {
-      opacity: 0,
-      duration: 0.3,
-      ease: "power2.in",
-      onComplete: () => {
-        gsap.set(menuRef.current, { display: "none" });
-      }
-    });
   }, [isOpen]);
 
   return (
@@ -122,60 +79,53 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* Full-screen menu overlay - Outside header */}
-      <div
-        ref={menuRef}
-        className="fixed inset-0 z-40 lg:hidden bg-aurea-bg/95 hidden"
-        style={{ backdropFilter: "blur(8px)" }}
-      >
-        <div className="flex h-full flex-col items-center justify-center px-6 w-full">
-          <div ref={menuLinksRef} className="w-full max-w-3xl space-y-6 text-center">
-            {/* Navigation Links */}
-            <nav className="space-y-6 flex flex-col items-center">
-              {links.map(([label, href]) => (
+      {isOpen ? (
+        <div className="fixed inset-x-0 bottom-0 top-[72px] z-40 bg-aurea-bg/96 backdrop-blur-xl lg:hidden">
+          <div className="flex h-full flex-col items-center overflow-y-auto px-6 py-8">
+            <div className="w-full max-w-3xl space-y-8 text-center">
+              <nav className="flex flex-col items-center gap-4 sm:gap-5">
+                {links.map(([label, href]) => (
+                  <a
+                    key={href}
+                    href={href}
+                    onClick={() => setIsOpen(false)}
+                    className="block w-full rounded-2xl border border-transparent px-4 py-3 text-2xl sm:text-3xl font-heading text-aurea-highlight transition hover:border-aurea-border hover:bg-aurea-card/70 hover:text-aurea-primary"
+                  >
+                    {label}
+                  </a>
+                ))}
+              </nav>
+
+              <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
                 <a
-                  key={href}
-                  href={href}
+                  href="/dashboard"
                   onClick={() => setIsOpen(false)}
-                  data-menu-item
-                  className="block text-4xl sm:text-5xl font-heading text-aurea-highlight transition hover:text-aurea-primary text-center w-full"
+                  className="rounded-full border border-aurea-border/90 bg-transparent px-6 py-3 font-semibold text-aurea-highlight transition hover:border-aurea-primary hover:text-aurea-primary"
                 >
-                  {label}
+                  Area studenti
                 </a>
-              ))}
-            </nav>
+                <a
+                  href="/contatti"
+                  onClick={() => setIsOpen(false)}
+                  className="rounded-full bg-aurea-primary px-6 py-3 font-semibold text-aurea-bg transition hover:bg-aurea-highlight"
+                >
+                  Consulenza
+                </a>
+              </div>
 
-            {/* CTA Buttons */}
-            <div data-menu-item className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <a
-                href="/dashboard"
-                onClick={() => setIsOpen(false)}
-                className="rounded-full border border-aurea-border/90 bg-transparent px-6 py-3 font-semibold text-aurea-highlight transition hover:border-aurea-primary hover:text-aurea-primary"
-              >
-                Area studenti
-              </a>
-              <a
-                href="/contatti"
-                onClick={() => setIsOpen(false)}
-                className="rounded-full bg-aurea-primary px-6 py-3 font-semibold text-aurea-bg transition hover:bg-aurea-highlight"
-              >
-                Consulenza
-              </a>
-            </div>
-
-            {/* Courses CTA */}
-            <div data-menu-item className="mt-8 pt-6 border-t border-aurea-border/50">
-              <a
-                href="/corsi"
-                onClick={() => setIsOpen(false)}
-                className="inline-block rounded-full bg-aurea-primary px-8 py-3 text-lg font-semibold text-aurea-bg transition hover:bg-aurea-highlight"
-              >
-                Esplora i corsi
-              </a>
+              <div className="pt-4">
+                <a
+                  href="/corsi"
+                  onClick={() => setIsOpen(false)}
+                  className="inline-block rounded-full bg-aurea-primary px-8 py-3 text-base font-semibold text-aurea-bg transition hover:bg-aurea-highlight"
+                >
+                  Esplora i corsi
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : null}
     </>
   );
 }

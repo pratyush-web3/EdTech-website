@@ -1,0 +1,188 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:wght@600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root,
+[data-theme="oro"] {
+  --font-display: "Cormorant Garamond";
+  --font-heading: "Playfair Display";
+  --font-sans: "Inter";
+  --font-mono: "JetBrains Mono";
+  --font-accent: "Cinzel";
+  --color-bg: #10100f;
+  --color-surface: #171715;
+  --color-card: #1f1e1a;
+  --color-primary: #d3ad4f;
+  --color-secondary: #dfcfaa;
+  --color-highlight: #fff7e6;
+  --color-text: #f8f1df;
+  --color-muted: #b2aa96;
+  --color-border: rgba(211, 173, 79, 0.22);
+  --color-error: #c45c3a;
+  --color-success: #4a7c59;
+}
+
+[data-theme="rinascimento"] {
+  --color-bg: #f8f4ed;
+  --color-surface: #eee7dc;
+  --color-card: #fffdf8;
+  --color-primary: #8f3f2f;
+  --color-secondary: #25483d;
+  --color-highlight: #1a1208;
+  --color-text: #1a1208;
+  --color-muted: #6d6255;
+  --color-border: rgba(139, 58, 42, 0.18);
+}
+
+[data-theme="milano"] {
+  --color-bg: #090a12;
+  --color-surface: #111421;
+  --color-card: #191d2d;
+  --color-primary: #7c74ff;
+  --color-secondary: #f06f73;
+  --color-highlight: #f7f6ff;
+  --color-text: #f7f6ff;
+  --color-muted: #a1a1c4;
+  --color-border: rgba(108, 99, 255, 0.22);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans), sans-serif;
+  letter-spacing: 0;
+  min-width: 320px;
+  overflow-x: clip;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-bg);
+}
+
+.container-aurea {
+  width: min(1280px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.section-aurea {
+  padding-block: 140px;
+}
+
+.page-shell {
+  padding-top: 72px;
+}
+
+.page-title {
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 0.98;
+}
+
+.clean-panel {
+  border: 1px solid var(--color-border);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--color-card) 92%, transparent), var(--color-card));
+}
+
+.hero-screen {
+  min-height: calc(100svh - 119px);
+}
+
+.hero-cover {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, var(--color-bg) 0%, color-mix(in srgb, var(--color-bg) 92%, transparent) 38%, color-mix(in srgb, var(--color-bg) 62%, transparent) 70%, var(--color-bg) 100%),
+    radial-gradient(circle at 75% 20%, color-mix(in srgb, var(--color-primary) 24%, transparent), transparent 34%);
+}
+
+.noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.12;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mix-blend-mode: overlay;
+}
+
+.ambient-light {
+  position: absolute;
+  width: 42vw;
+  height: 42vw;
+  max-width: 560px;
+  max-height: 560px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: .34;
+  background: radial-gradient(circle, var(--color-primary), transparent 64%);
+  pointer-events: none;
+}
+
+.gold-line {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+  transform-origin: left;
+}
+
+.prose-aurea p {
+  color: var(--color-muted);
+  line-height: 1.8;
+}
+
+.legal h2,
+.legal h3 {
+  color: var(--color-highlight);
+  font-family: var(--font-heading), serif;
+}
+
+.legal p,
+.legal li {
+  color: var(--color-muted);
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .section-aurea {
+    padding-block: 80px;
+  }
+
+  .container-aurea {
+    width: min(100% - 28px, 1280px);
+  }
+
+  .page-shell {
+    padding-top: 42px;
+  }
+
+  .hero-screen {
+    min-height: auto;
+  }
+}
